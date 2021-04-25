@@ -2,21 +2,17 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   taskWrapper: {
-    paddingRight: 15,
+    paddingRight: 10,
     paddingLeft: 15,
-    paddingTop: 15,
-    marginTop: 56,
+    paddingVertical: 12,
+    marginTop: 35,
     backgroundColor: '#FFFFFF',
-    height: 130,
     borderRadius: 10,
     borderLeftWidth: 10,
     borderLeftColor: 'red',
   },
-  taskCategory: {
-    color: 'red',
-  },
   taskText: {
-    paddingTop: 12,
+    paddingTop: 1,
     fontSize: 18,
     fontFamily: 'verdana',
   },

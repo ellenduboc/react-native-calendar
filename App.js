@@ -1,5 +1,12 @@
-import React from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  TextInput,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import DayItem from './src/components/DayItem';
 import TaskButton from './src/components/TaskButton';
 import Header from './src/components/Header';
@@ -37,6 +44,11 @@ const Tasks = () => {
     {date: 29, day: 'mon'},
     {date: 30, day: 'tue'},
   ];
+
+  const [appointment, setAppointment] = useState('');
+
+  const [appointmentList, setAppointmentList] = useState(['qualquer coisa']);
+
   return (
     <View style={styles.container}>
       <Header />
@@ -48,7 +60,31 @@ const Tasks = () => {
         renderItem={({item}) => <DayItem date={item.date} day={item.day} />}
       />
       <View style={styles.wrapper}>
-        <TaskButton />
+        <View style={styles.inputWrapper}>
+          <TextInput
+            style={styles.textInput}
+            placeholderTextColor="gray"
+            placeholder="Add an new appointment"
+            value={appointment}
+            onChangeText={text => {
+              setAppointment(text);
+            }}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              setAppointmentList([...appointmentList, appointment]);
+
+              setAppointment('');
+            }}>
+            <View style={styles.buttonWrapper}>
+              <Text style={styles.textButton}>+</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={appointmentList}
+          renderItem={({item}) => <TaskButton taskTitle={item} />}
+        />
       </View>
     </View>
   );
@@ -63,6 +99,34 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     padding: 20,
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  textInput: {
+    width: 290,
+    height: 50,
+    backgroundColor: 'white',
+    fontSize: 16,
+    fontFamily: 'verdana',
+    borderRadius: 10,
+    paddingLeft: 15,
+  },
+  buttonWrapper: {
+    borderRadius: 10,
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: 'red',
+  },
+  textButton: {
+    textAlign: 'center',
+    fontSize: 26,
+    fontFamily: 'arial',
+    color: '#FFFFFF',
   },
 });
 

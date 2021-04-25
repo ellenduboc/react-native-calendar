@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     marginRight: 10,
-    marginTop: 40,
+    marginTop: 25,
   },
   date: {
     textAlign: 'center',
